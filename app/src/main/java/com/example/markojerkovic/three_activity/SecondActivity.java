@@ -8,53 +8,46 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.util.Log;
 
+public class SecondActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
-
-    static final public String MYPREFS = "myprefs";
-    static final private String LOG_TAG = "Three_MainActivity";
+    static final private String LOG_TAG = "Three_SecondActivity";
 
     AppInfo appInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_second);
         appInfo = AppInfo.getInstance(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-//        //*******Temp*******
-//        appInfo.setSTR1("foo");
-//        appInfo.setSTR2("bru");
-//        appInfo.setSTR3("ayy");
-//        ////////////////////
 
         // Get all of the text boxes so you can add the stored text to them
-        EditText edv1 = (EditText) findViewById(R.id.text_1);
-        TextView tv2 = (TextView) findViewById(R.id.text_2);
+        TextView tv1 = (TextView) findViewById(R.id.text_1);
+        EditText edv2 = (EditText) findViewById(R.id.text_2);
         TextView tv3 = (TextView) findViewById(R.id.text_3);
         // set all of the text boxes to the strings stored in app info
-        if (appInfo.sharedString1 != null) {
-            edv1.setText(appInfo.sharedString1);
+        if (appInfo.sharedString2 != null) {
+            edv2.setText(appInfo.sharedString2);
         }
-        tv2.setText(appInfo.sharedString2);
+        tv1.setText(appInfo.sharedString1);
         tv3.setText(appInfo.sharedString3);
     }
 
-    //enter button was pressed so update appInfo.sharedString1
+    //enter button was pressed so update appInfo.sharedString2
     public void onEnter(View V) {
-        EditText edv1 = (EditText) findViewById(R.id.text_1);
-        String temp_text = edv1.getText().toString();
-        appInfo.setSTR1(temp_text);
+        EditText edv2 = (EditText) findViewById(R.id.text_2);
+        String temp_text = edv2.getText().toString();
+        appInfo.setSTR2(temp_text);
     }
 
-    //Go to second activity
-    public void goActTwo(View V) {
-        Log.d(LOG_TAG, "goActTwo called");
-        Intent intent = new Intent(this, SecondActivity.class);
+    //Go to main activity
+    public void goActOne(View V) {
+        Log.d(LOG_TAG, "goActOne called");
+        Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
@@ -69,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //Do nothing because already in mainActivity
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }
