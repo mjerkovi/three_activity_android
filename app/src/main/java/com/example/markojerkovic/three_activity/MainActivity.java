@@ -26,11 +26,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        //*******Temp*******
-//        appInfo.setSTR1("foo");
-//        appInfo.setSTR2("bru");
-//        appInfo.setSTR3("ayy");
-//        ////////////////////
 
         // Get all of the text boxes so you can add the stored text to them
         EditText edv1 = (EditText) findViewById(R.id.text_1);
